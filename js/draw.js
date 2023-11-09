@@ -1,11 +1,14 @@
 let canvasWidth = 1024;
 let canvasHeight = (9 / 16) * canvasWidth;
-let level1;
+let currentLevel = 1;
 let captainIdle = [];
 let captainJump = [];
 let chestImg = [];
+let levelImg = [];
 function preload() {
-  level1Img = loadImage("./assets/img/backGroundLevel1.png");
+  for (let i = 1; i <= 3; i++) {
+    levelImg.push(loadImage(`./assets/img/Levels/backGroundLevel${i}.png`));
+  }
   for (let i = 1; i <= 5; i++) {
     captainIdle.push(
       loadImage(
@@ -27,19 +30,26 @@ function preload() {
 
 function setup() {
   createCanvas(canvasWidth, canvasHeight);
-  player = new Player();
-  level1 = new Imgs(level1Img, 0, 0);
-  chest = new Chest(this.chestFrame, 767, 348)
+  if (currentLevel === 1) {
+    level1();
+  } else if (currentLevel === 2) {
+    level2();
+  }
 }
 
 function draw() {
   background(255);
-  level1.draw();
+  level.draw();
   block.forEach((block) => {
     block.draw();
   });
+  if (platform) {
+    platform.forEach((plat) => {
+      plat.draw();
+    });
+  }
   chest.draw();
-    chest.update();
+  chest.update();
   player.draw();
   player.update();
 }
