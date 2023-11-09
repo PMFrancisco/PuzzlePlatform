@@ -13,14 +13,16 @@ class Player {
       bottomL: this.y + this.h,
       topR: this.x + this.w,
     };
+    this.currentImg = captainIdle[0];
   }
 
   update() {
     this.x += this.speed.x;
     this.lateralCollision();
-    this.gravityEffecth();
+    this.gravityEffect();
     this.verticalCollision();
     this.movement();
+    this.captainAnimation();
   }
 
   movement() {
@@ -39,9 +41,14 @@ class Player {
     }
   }
 
+  captainAnimation() {
+    let frameIndex = frameCount % (captainIdle.length * 10);
+    let imageIndex = floor(frameIndex / 10);
+    this.currentImg = captainIdle[imageIndex];
+  }
+
   draw() {
-    fill(51, 138, 255);
-    square(this.x, this.y, this.h);
+    image(this.currentImg, this.x, this.y, this.h, this.w, 20, 4, 24, 29);
   }
   isColliding(collisionBlock) {
     return (
@@ -64,7 +71,7 @@ class Player {
       }
     }
   }
-  gravityEffecth() {
+  gravityEffect() {
     this.speed.y += this.gravity;
     this.y += this.speed.y;
   }

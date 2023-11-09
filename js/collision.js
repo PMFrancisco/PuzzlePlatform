@@ -8,8 +8,8 @@ const colLevel1 = [
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 ];
 
-const numRows = 9; // Number of rows
-const numCols = 16; // Number of columns
+const numRows = 9;
+const numCols = 16;
 
 const twoDArray = [];
 
