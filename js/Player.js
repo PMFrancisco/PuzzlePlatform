@@ -25,6 +25,7 @@ class Player {
     this.movement();
     this.captainAnimation();
     this.platformCollision();
+    this.topCollision();
   }
 
   movement() {
@@ -32,9 +33,9 @@ class Player {
     if (keyIsDown(LEFT_ARROW) && keyIsDown(RIGHT_ARROW)) {
       this.speed.x = 0;
     } else if (keyIsDown(LEFT_ARROW)) {
-      this.speed.x = -5;
+      this.speed.x = -3;
     } else if (keyIsDown(RIGHT_ARROW)) {
-      this.speed.x = 5;
+      this.speed.x = 3;
     } else {
       this.speed.x = 0;
     }
@@ -45,6 +46,15 @@ class Player {
       this.direction = 1;
     } else if (this.speed.x < 0) {
       this.direction = -1;
+    }
+  }
+
+  topCollision() {
+    for (let i = 0; i < block.length; i++) {
+      const collisionBlock = block[i];
+      if (this.y === collisionBlock.y + collisionBlock.h + 0.2) {
+        this.speed.y = this.gravity;
+      }
     }
   }
 
@@ -125,15 +135,12 @@ class Player {
       if (this.platColliding(collisionPlatform)) {
         if (keyIsDown(32) && this.speed.y >= 0) {
           this.speed.y = -8;
-          this.y = collisionPlatform.y - this.h;
+          this.y = collisionPlatform.y - this.h + 0.2;
         } else if (this.speed.y > 0) {
           this.speed.y = 0;
-          this.y = collisionPlatform.y - this.h;
+          this.y = collisionPlatform.y - this.h - 0.2;
         }
       }
     }
   }
-  
 }
-
-

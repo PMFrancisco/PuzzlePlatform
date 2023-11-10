@@ -26,15 +26,12 @@ function preload() {
   for (let i = 1; i <= 6; i++) {
     chestImg.push(loadImage(`./assets/img/Chest/Chest Close 0${i}.png`));
   }
+  boxImg = loadImage("./assets/img/box.png");
 }
 
 function setup() {
   createCanvas(canvasWidth, canvasHeight);
-  if (currentLevel === 1) {
-    level1();
-  } else if (currentLevel === 2) {
-    level2();
-  }
+  level1();
 }
 
 function draw() {
@@ -50,6 +47,7 @@ function draw() {
   }
   chest.draw();
   chest.update();
+
   player.draw();
   player.update();
 }

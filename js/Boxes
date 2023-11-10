@@ -1,0 +1,10 @@
+class Box {
+  constructor() {
+    this.x = x;
+    this.y = y;
+    this.img = boxImg;
+  }
+  draw() {
+    image(this.img, this.x, this.y);
+  }
+}

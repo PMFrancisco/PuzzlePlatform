@@ -1,5 +1,5 @@
 class Chest {
-  constructor(chestFrame, x, y) {
+  constructor(x, y) {
     this.x = x;
     this.y = y;
     this.w = 64;
@@ -15,14 +15,22 @@ class Chest {
           chest.chestFrame = chestImg[i];
         }, i * 100);
       }
-      setTimeout(() => {
-        currentLevel++;
-        if (currentLevel === 2) {
-          level2();
-        }
-      }, chestImg.length * 300);
+      if (!this.isOpen) {
+        this.isOpen = true;
+        setTimeout(() => {
+          currentLevel++;
+          if (currentLevel === 2) {
+            level2();
+          }
+          if (currentLevel === 3) {
+            level3();
+          }
+        }, 2000);
+      }
     }
   }
+
+  nextLevel;
 
   update() {
     this.openAnimation();
