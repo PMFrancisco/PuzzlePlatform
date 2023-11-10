@@ -9,13 +9,14 @@ class Chest {
   }
 
   openAnimation() {
-    if (this.checkCollision(player) && keyIsDown(UP_ARROW)) {
-      for (let i = 0; i < chestImg.length; i++) {
-        setTimeout(() => {
-          chest.chestFrame = chestImg[i];
-        }, i * 100);
-      }
-      if (!this.isOpen) {
+    if (!this.isOpen) {
+      if (this.checkCollision(player) && keyIsDown(UP_ARROW)) {
+        for (let i = 0; i < chestImg.length; i++) {
+          setTimeout(() => {
+            chest.chestFrame = chestImg[i];
+          }, i * 100);
+        }
+        chestSound.play();
         this.isOpen = true;
         setTimeout(() => {
           currentLevel++;
@@ -24,6 +25,9 @@ class Chest {
           }
           if (currentLevel === 3) {
             level3();
+          }
+          if (currentLevel === 4) {
+            currentLevel = 1;
           }
         }, 2000);
       }

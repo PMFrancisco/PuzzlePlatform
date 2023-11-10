@@ -41,6 +41,7 @@ class Player {
     }
     if (keyIsDown(32) && this.speed.y === 0) {
       this.speed.y = -8;
+      jumpSound.play();
     }
     if (this.speed.x > 0) {
       this.direction = 1;

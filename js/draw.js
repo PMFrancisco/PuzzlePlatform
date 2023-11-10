@@ -27,9 +27,13 @@ function preload() {
     chestImg.push(loadImage(`./assets/img/Chest/Chest Close 0${i}.png`));
   }
   boxImg = loadImage("./assets/img/box.png");
+  chestSound = loadSound("./assets/sound/open-chest.m4a");
+  backgroundMusic = loadSound("./assets/sound/background-music.wav");
+  jumpSound = loadSound("./assets/sound/jump.wav");
 }
 
 function setup() {
+  backgroundMusic.loop();
   createCanvas(canvasWidth, canvasHeight);
   level1();
 }
